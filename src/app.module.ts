@@ -1,10 +1,15 @@
+import { typeormConfig } from '@config/ormconfig'
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { NestEventModule } from 'nest-event'
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    TypeOrmModule.forRoot(typeormConfig),
+    NestEventModule,
+  ],
+  controllers: [],
+  providers: [],
 })
-export class AppModule {}
+export class AppModule {
+}
