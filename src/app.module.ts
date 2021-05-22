@@ -7,6 +7,7 @@ import { NestEventModule } from 'nest-event'
   imports: [
     TypeOrmModule.forRoot(typeormConfig),
     NestEventModule,
+
   ],
   controllers: [],
   providers: [],
