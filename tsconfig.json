@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "strict": true,
+    "strict": false,
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
@@ -13,9 +13,8 @@
     "baseUrl": "./",
     "incremental": true,
     "paths": {
-      "@modules/*": ["src/modules/*"],
-      "@config/*": ["src/infrastructure/configs/*"],
-      "@exceptions": ["./src/core/exceptions"]
+      "@server/*": ["src/*"],
+      "@libs/*": ["src/libs/*"],
     }
   },
 }
