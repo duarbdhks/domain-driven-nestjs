@@ -4,13 +4,12 @@ module.exports = {
     project: 'tsconfig.json',
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint/eslint-plugin', '@typescript-eslint'],
+  plugins: ['@typescript-eslint/eslint-plugin'],
   extends: [
     'airbnb-base',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier',
-    'prettier/@typescript-eslint',
     'plugin:import/typescript',
   ],
   root: true,
@@ -18,12 +17,17 @@ module.exports = {
     node: true,
     jest: true,
   },
+  ignorePatterns: ['.eslintrc.js'],
   rules: {
     // TS off
     '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'camelcase': 'off',
+    'lines-between-class-members': 'off',
 
     // TS errors
-    '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/no-misused-new': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'error',
     '@typescript-eslint/no-non-null-assertion': 'error',
@@ -39,6 +43,7 @@ module.exports = {
     'import/no-cycle': 'off',
     'consistent-return': 'off',
     'no-underscore-dangle': 'off',
+    'no-console': 'off',
 
     // Eslint errors
     'no-restricted-syntax': [
