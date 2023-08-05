@@ -1,4 +1,5 @@
 import * as path from 'path'
+import { AccountModule } from '@server/account/account.module'
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { config } from '@server/config'
@@ -13,6 +14,7 @@ import { config } from '@server/config'
       synchronize: false,
       url: config.db.connectionString,
     }),
+    AccountModule,
   ],
   controllers: [],
   providers: [],

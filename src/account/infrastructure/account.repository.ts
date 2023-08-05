@@ -6,7 +6,7 @@ import { Repository } from 'typeorm'
 export class AccountRepository extends Repository<AccountEntity> {
   async saveAccount(data: Account | Account[]): Promise<void> {
     const models = Array.isArray(data) ? data : [data]
-    const entities = this.create(models.map((model) => plainToInstance(AccountEntity, model)))
+    const entities = this.create(plainToInstance(AccountEntity, models))
     await this.save(entities)
   }
 }
