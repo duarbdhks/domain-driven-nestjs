@@ -25,11 +25,13 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'off',
     'import/no-extraneous-dependencies': 'off',
     'camelcase': 'off',
+    'no-continue': 'off',
+    'new-cap': 'off',
     'lines-between-class-members': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
 
     // TS errors
     '@typescript-eslint/no-misused-new': 'error',
-    '@typescript-eslint/explicit-module-boundary-types': 'error',
     '@typescript-eslint/no-non-null-assertion': 'error',
 
     // Eslint off

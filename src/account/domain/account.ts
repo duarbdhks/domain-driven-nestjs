@@ -1,21 +1,18 @@
 import { IAccount, IAccountModel } from '@server/account/domain/account.interface'
 
 export class Account implements IAccount {
-  readonly id: number
-  readonly name: string
-  readonly email: string
-  password: string
-  balance: number
-  locked_at?: Date | null
-  readonly created_at: Date
-  updated_at?: Date | null
+  private readonly id: number
+  private readonly name: string
+  private readonly email: string
+  private readonly created_at: Date
+  private readonly deleted_at: Date | null
+  private readonly updated_at: Date | null
+  private password: string
+  private balance: number
+  private locked_at: Date | null
 
   constructor(options: IAccountModel) {
     Object.assign(this, options)
-  }
-
-  compareId(id: number): boolean {
-    return false
   }
 
   deposit(amount: number): void {
@@ -27,7 +24,7 @@ export class Account implements IAccount {
   }
 
   open(): void {
-    console.log('open')
+    console.log('계좌를 개설하였습니다.')
   }
 
   updatePassword(password: string): void {

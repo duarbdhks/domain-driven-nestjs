@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
-@Entity()
+@Entity('account')
 export class AccountEntity {
   @PrimaryGeneratedColumn({ type: 'int4' })
   id: number
@@ -19,6 +19,9 @@ export class AccountEntity {
 
   @Column({ type: 'timestamptz', nullable: true })
   locked_at?: Date | null
+
+  @Column({ type: 'timestamptz', nullable: true })
+  deleted_at?: Date | null
 
   @CreateDateColumn({ type: 'timestamptz', nullable: false, default: () => 'NOW()' })
   created_at: Date

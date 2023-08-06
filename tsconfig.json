@@ -15,6 +15,9 @@
     "paths": {
       "@server/*": ["src/*"],
       "@libs/*": ["src/libs/*"],
+      "@shared/*": ["src/shared/*"],
+      "@enum/*": ["src/shared/enum/*"],
+      "@interface/*": ["src/shared/interface/*"]
     }
   },
 }
