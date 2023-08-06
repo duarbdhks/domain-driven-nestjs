@@ -1,16 +1,22 @@
+export interface ICreateAccountProps {
+  name: string
+  email: string
+  password: string
+}
+
 export interface IAccountModel {
-  id: number
+  id?: number
   name: string
   email: string
   password: string
   balance: number
   locked_at?: Date | null
   created_at: Date
+  deleted_at?: Date | null
   updated_at?: Date | null
 }
 
-export interface IAccount extends IAccountModel {
-  compareId: (id: number) => boolean
+export interface IAccount {
   open: () => void
   updatePassword: (password: string) => void
   withdraw: (amount: number) => void
