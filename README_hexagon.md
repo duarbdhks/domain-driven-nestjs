@@ -2,15 +2,15 @@ _**This repo is work in progress**_
 
 # Domain-Driven Hexagon
 
-Main emphasis of this project is to provide recommendations on how to design software applications. In this readme are presented some of the techniques, tools, best practices, architectural patterns and guidelines gathered from different sources.
+이 프로젝트의 주요 강조점은 소프트웨어 응용 프로그램을 설계하는 방법에 대한 권장 사항을 제공하는 것입니다. 이 읽어보기에는 여러 소스에서 수집 한 몇 가지 기술, 도구, 모범 사례, 아키텍처 패턴 및 지침이 나와 있습니다.
 
-**Everything below should be seen as a recommendation**. Keep in mind that different projects have different requirements, so any pattern mentioned in this readme can be replaced or skipped if needed.
+**아래의 모든 내용은 권장 사항으로 간주됩니다**. 프로젝트마다 요구 사항이 다르므로이 readme에 언급 된 패턴은 필요한 경우 교체하거나 건너 뛸 수 있습니다.
 
 Code examples are written using [NodeJS](https://nodejs.org/en/), [TypeScript](https://www.typescriptlang.org/), [NestJS](https://docs.nestjs.com/) framework and [Typeorm](https://www.npmjs.com/package/typeorm) for the database access.
 
-Though patterns and principles presented here are **framework/language agnostic**, so above technologies can be easily replaced with any alternative. No matter what language or framework is used, any application can benefit from principles described below.
+여기에 제시된 패턴과 원칙은 **프레임 워크 / 언어에 구애받지 않음** 이므로 위의 기술을 다른 대안으로 쉽게 대체 할 수 있습니다. 어떤 언어 나 프레임 워크를 사용하든 모든 애플리케이션은 아래에 설명 된 원칙의 이점을 누릴 수 있습니다.
 
-**Note**: code examples are adapted to TypeScript and mentioned above frameworks so may not fit well for other languages. Also remember that code examples presented here are just examples and must be changed according to project's needs or personal preference.
+**참고** : 코드 예제는 TypeScript에 맞게 조정되고 위에서 언급 한 프레임 워크이므로 다른 언어에는 적합하지 않을 수 있습니다. 또한 여기에 제시된 코드 예제는 단지 예제 일 뿐이며 프로젝트의 필요 또는 개인 선호도에 따라 변경해야합니다.
 
 ## Table of Contents
 
@@ -76,7 +76,7 @@ Though patterns and principles presented here are **framework/language agnostic*
 
 # Architecture
 
-Mainly based on:
+기반 내용:
 
 - [Domain-Driven Design (DDD)](https://en.wikipedia.org/wiki/Domain-driven_design)
 - [Hexagonal (Ports and Adapters) Architecture ](https://blog.octo.com/en/hexagonal-architecture-three-principles-and-an-implementation-example/)
@@ -86,46 +86,52 @@ Mainly based on:
 - [SOLID Principles](https://en.wikipedia.org/wiki/SOLID)
 - [Software Design Patterns](https://refactoring.guru/design-patterns/what-is-pattern)
 
-And many other sources (more links below in every chapter).
+기타 여러 출처 (모든 장에서 아래에 더 많은 링크).
 
-Before we begin, here are the PROS and CONS of using a complete architecture like this:
+시작하기 전에 다음과 같은 완전한 아키텍처를 사용할 때의 장단점은 다음과 같습니다.
 
-## Pros:
+## 장점:
 
-- Independent of external frameworks, technologies, databases, etc. Frameworks and external resources can be plugged/unplugged with much less effort.
-- Easily testable and scalable.
-- More secure. Some security principles are baked in design itself.
-- The solution can be worked on and maintained by different teams, without stepping on each other's toes.
-- Easier to add new features. As the system grows over time, the difficulty in adding new features remains constant and relatively small.
-- If the solution is properly broken apart along [bounded context](https://martinfowler.com/bliki/BoundedContext.html) lines, it becomes easy to convert pieces of it into microservices if needed.
+- 외부 프레임 워크, 기술, 데이터베이스 등에 독립적입니다. 프레임 워크 및 외부 리소스를 훨씬 적은 노력으로 연결/분리 할 수 있습니다.
+- 쉽게 테스트하고 확장 할 수 있습니다.
+- 더 안전합니다. 일부 보안 원칙은 설계 자체에 적용됩니다.
+- 솔루션은 다른 팀에서 작업하고 유지 관리하여도 서로 꼬이지 않습니다.
+- 새로운 기능을 더 쉽게 추가 할 수 있습니다. 시스템이 시간이 지남에 따라 성장함에 따라 새로운 기능을 추가하는 데 어려움이 계속되고 상대적으로 작습니다.
+- 솔루션이 [bounded context](https://martinfowler.com/bliki/BoundedContext.html) 줄을 따라 적절하게 분리되면 필요한 경우 일부를 마이크로 서비스로 쉽게 변환 할 수 있습니다.
 
-## Cons:
+## 단점:
+- 이것은 SOLID, Clean/Hexagonal Architecture, Domain-Driven Design 등과 같은 품질 소프트웨어 원칙에 대한 확고한 이해가 필요한 정교한 아키텍처입니다. 이러한 솔루션을 구현하는 모든 팀은 솔루션을 주도하고 유지하는 데 전문가가 거의 필요합니다. 잘못된 방식으로 진화하고 기술적 부채를 축적하는 것입니다.
+  
 
-- This is a sophisticated architecture which requires a firm understanding of quality software principles, such as SOLID, Clean/Hexagonal Architecture, Domain-Driven Design, etc. Any team implementing such a solution will almost certainly require an expert to drive the solution and keep it from evolving the wrong way and accumulating technical debt.
+- 여기에 제시된 방법 중 일부는 비즈니스 로직이 많지 않은 중소 규모 애플리케이션에는 권장되지 않습니다. 모든 빌딩 블록과 레이어, 상용구 코드, 추상화, 데이터 매핑 등을 지원하기 위해 선행 복잡성이 추가되었습니다. 따라서 이와 같은 완전한 아키텍처를 구현하는 것은 일반적으로 간단한 [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) 에 적합하지 않습니다. 응용 프로그램과 같은 솔루션을 지나치게 복잡하게 만들 수 있습니다. 아래 설명 된 원칙 중 일부는 더 작은 크기의 응용 프로그램에서 사용할 수 있지만 모든 장단점을 분석하고 이해 한 후에 만 구현해야합니다.
 
-- Some of the practices presented here are not recommended for small-medium sized applications with not a lot of business logic. There is added up-front complexity to support all those building blocks and layers, boilerplate code, abstractions, data mapping etc. thus implementing a complete architecture like this is generally ill-suited to simple [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) applications and could over-complicate such solutions. Some of the described below principles can be used in a smaller sized applications but must be implemented only after analyzing and understanding all pros and cons.
 
 # Diagram
 
 ![Domain-Driven Hexagon](assets/images/DomainDrivenHexagon.png)
-<sup>Diagram is mostly based on [this one](https://github.com/hgraca/explicit-architecture-php#explicit-architecture-1) + others found online</sup>
+<sup>Diagram 은 [this one](https://github.com/hgraca/explicit-architecture-php#explicit-architecture-1) + others found online 을 기반으로 구성 되어있습니다.</sup>
 
-In short, data flow looks like this (from left to right):
+간단히 말해 데이터 흐름은 다음과 같습니다. (왼쪽에서 오른쪽으로):
 
-- Request/CLI command/event is sent to the controller using plain DTO;
-- Controller parses this DTO, maps it to a Command/Query object format and passes it to a Application service;
-- Application service handles this Command/Query; it executes business logic using domain services and/or entities and uses the infrastructure layer through ports;
-- Infrastructure layer uses a mapper to convert data to format that it needs, uses repositories to fetch/persist data and adapters to send events or do other I/O communications, maps data back to domain format and returns it back to Application service;
-- After application service finishes doing it's job, it returns data/confirmation back to Controllers;
-- Controllers return data back to the user (if application has presenters/views, those are returned instead).
+1. 요청/CLI 명령/이벤트는 일반 DTO를 사용하여 컨트롤러로 전송됩니다.
+2. 컨트롤러는이 DTO를 구문 분석하고이를 **명령** 혹은 **쿼리 개체 형식에 매핑** 한 다음 응용 프로그램 서비스에 전달합니다.
+3. 애플리케이션 서비스는이 명령/쿼리를 처리합니다. 도메인 서비스 또는 엔티티를 사용하여 비즈니스 로직을 실행하고 포트를 통해 인프라 계층을 사용합니다.
+4. 인프라 계층은 mapper를 사용하여 데이터를 필요한 형식으로 변환하고, 
+  리포지토리를 사용하여 데이터를 가져 오거나 유지합니다. 
+  어댑터를 사용하여 이벤트를 보내거나 다른 I/O 통신을 수행하고, 
+  데이터를 다시 도메인 형식으로 매핑하고 다시 애플리케이션 서비스로 반환합니다.
+5. 애플리케이션 서비스는 job을 마친 후 데이터를 컨트롤러에 반환합니다.
+6. 컨트롤러는 데이터를 사용자에게 반환합니다. (애플리케이션에 presenters/views가 있는 경우, 대신 반환 됨).
 
-Each layer is in charge of it's own logic and has building blocks that usually should follow a [Single-responsibility principle](https://en.wikipedia.org/wiki/Single-responsibility_principle) when possible and when it makes sense (for example, using `Repositories` only for database access, using `Entities` for business logic etc).
+각 계층은 자신의 논리를 담당하며 일반적으로 [단일 책임 원칙](https://en.wikipedia.org/wiki/Single-responsibility_principle)을 따라야하는 빌딩 블록을 가지고 있습니다. 
+예를 들어, 데이터베이스 액세스를 위해서만 `Repositories`를 사용하고, 비즈니스 로직 등을 위해 `Entities`를 사용합니다.
 
-**Keep in mind** that different projects can have more or less steps/layers/building blocks than described here. Add more if application requires it, and skip some if application is not that complex and doesn't need all that abstraction.
+**각 프로젝트마다 여기에 설명 된 것보다 더 많거나 적은 단계/레이어/빌딩 블록 이 있을 수 있습니다.** 
+응용 프로그램에 필요한 경우 추가하고, 응용 프로그램이 그렇게 복잡하지 않고 모든 추상화가 필요하지 않은 경우 일부를 건너 뜁니다.
 
-General recommendation for any project: analyze how big/complex the application will be, find a compromise and use as many layers/building blocks as needed for the project and skip ones that may over-complicate things.
+모든 프로젝트에 대한 일반적인 권장 사항: 애플리케이션의 크기/복잡성을 분석하고, 절충안을 찾아 프로젝트에 필요한만큼의 레이어/빌딩 블록을 사용하고, 지나치게 복잡 할 수있는 것은 건너 뜁니다.
 
-More in details on each step below.
+아래 각 단계에 대해 자세히 알아보세요.
 
 # Modules
 

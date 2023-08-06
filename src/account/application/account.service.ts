@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common'
 import { AccountFactory } from '@server/account/domain/account.factory'
-import { AccountRepository } from '@server/account/infrastructure/account.repository.interface'
+import { AccountRepository } from '@server/account/domain/account.repository.interface'
 import { OpenAccountRequestDTO } from '@server/account/interface/dto'
 import { IBody, IHeaders } from '@shared/interface'
 

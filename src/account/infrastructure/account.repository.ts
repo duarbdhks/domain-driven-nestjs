@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Account } from '@server/account/domain/account'
-import { AccountRepository } from '@server/account/infrastructure/account.repository.interface'
+import { AccountRepository } from '@server/account/domain/account.repository.interface'
 import { AccountEntity } from '@server/account/infrastructure/entity/account.entity'
 import { plainToInstance } from 'class-transformer'
 import { Repository, SaveOptions } from 'typeorm'
